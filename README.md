@@ -177,7 +177,7 @@ Suggestions, improvements, and feedback are always welcome!
 
 GitHub: https://github.com/CoderXash9
 
-LinkedIn: *(Add your LinkedIn URL here)*
+LinkedIn: www.linkedin.com/in/ashwinicodes
 
 ---
 
