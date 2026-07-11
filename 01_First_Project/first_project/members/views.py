@@ -66,3 +66,10 @@ def testing4(request):
     template = loader.get_template("template.html")
     context = {"mymembers": mydata}
     return HttpResponse(template.render(context, request))
+
+
+def testing5(request):
+    mydata = Member.objects.values_list("firstname")
+    template = loader.get_template("template.html")
+    context = {"mymembers": mydata}
+    return HttpResponse(template.render(context, request))
