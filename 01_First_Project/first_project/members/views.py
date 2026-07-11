@@ -73,3 +73,10 @@ def testing5(request):
     template = loader.get_template("template.html")
     context = {"mymembers": mydata}
     return HttpResponse(template.render(context, request))
+
+
+def testing6(request):
+    mydata = Member.objects.filter(firstname="Emile").values()
+    template = loader.get_template("template.html")
+    context = {"mymembers": mydata}
+    return HttpResponse(template.render(context, request))
