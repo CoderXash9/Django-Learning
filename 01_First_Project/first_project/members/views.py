@@ -116,3 +116,10 @@ def testing9(request):
     template = loader.get_template("template.html")
     context = {"mymembers": mydata}
     return HttpResponse(template.render(context, request))
+
+
+def testing10(request):
+    mydata = Member.objects.all().order_by("lastname", "-id").values()
+    template = loader.get_template("template.html")
+    context = {"mymembers": mydata}
+    return HttpResponse(template.render(context, request))
