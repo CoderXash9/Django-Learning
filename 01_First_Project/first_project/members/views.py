@@ -27,7 +27,7 @@ def main(request):
     return HttpResponse(template.render())
 
 
-def testing(request):
+def testing1(request):
     template = loader.get_template("template.html")
     context = {
         "fruits": ["ABE", "AA", "NAA"],
@@ -39,7 +39,7 @@ from django.http import HttpResponse
 from django.template import loader
 
 
-def testing(request):
+def testing2(request):
     template = loader.get_template("template.html")
     context = {
         "firstname": "Linus",
@@ -52,10 +52,17 @@ from django.template import loader
 from .models import Member
 
 
-def testing(request):
+def testing3(request):
     mymembers = Member.objects.all().values()
     template = loader.get_template("template.html")
     context = {
         "mymembers": mymembers,
     }
+    return HttpResponse(template.render(context, request))
+
+
+def testing4(request):
+    mydata = Member.objects.all()
+    template = loader.get_template("template.html")
+    context = {"mymembers": mydata}
     return HttpResponse(template.render(context, request))
