@@ -95,3 +95,17 @@ def testing6(request):
     template = loader.get_template("template.html")
     context = {"mymembers": mydata}
     return HttpResponse(template.render(context, request))
+
+
+def testing7(request):
+    mydata = Member.objects.filter(firstname__startswith="L").values()
+    template = loader.get_template("template.html")
+    context = {"mymembers": mydata}
+    return HttpResponse(template.render(context, request))
+
+
+def testing8(request):
+    mydata = Member.objects.all().order_by("firstname").values()
+    template = loader.get_template("template.html")
+    context = {"mymembers": mydata}
+    return HttpResponse(template.render(context, request))
