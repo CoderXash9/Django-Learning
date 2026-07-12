@@ -1,12 +1,12 @@
-{% extends 'master.html' %}
+{% extends "master.html" %}
 
 {% block title %}
-First Project - Members
+  My Tennis Club - List of all members
 {% endblock %}
 
-{% block content %}
 
- <div class="mycard">
+{% block content %}
+  <div class="mycard">
     <h1>Members</h1>
     <ul>
       {% for x in mymembers %}
@@ -14,21 +14,4 @@ First Project - Members
       {% endfor %}
     </ul>
   </div>
-
-<p><a href="{% url 'main' %}">HOME</a></p>
-
-<h1>Members</h1>
-
-<ul>
-{% for x in mymembers %}
-    <li>
-        <a href="{% url 'details' x.id %}">
-            {{ x.firstname }} {{ x.lastname }}
-        </a>
-    </li>
-{% empty %}
-    <li>No members found.</li>
-{% endfor %}
-</ul>
-
 {% endblock %}
