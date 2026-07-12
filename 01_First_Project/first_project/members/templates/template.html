@@ -1,56 +1,52 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
 <html>
+
+<head>
     <link rel="stylesheet" href="{% static 'myfirst.css' %}">
+</head>
 
-    <body>
+<body>
 
-        <table border = '1'>
-            <tr>
-                <th>ID</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-            </tr>
-            {%for x in mymembers%}
-            <tr>
-                <td>
-                    {{x.id}}</td>
-                    <td> {{x.firstname}}</td>
-                    <td> {{x.lastname}}</td>
-                </tr>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+    </tr>
 
-                {% endfor %}
-            </table>
-        {%with firstname = 'Tobias'%}
-        <h2> Hello {{firstname}} , how are you ? </h2>
-        {%for x in fruits%}
-        <h1> {{x}} </h1>
-        {%endfor%}
+    {% for x in mymembers %}
+    <tr>
+        <td>{{ x.id }}</td>
+        <td>{{ x.firstname }}</td>
+        <td>{{ x.lastname }}</td>
+    </tr>
+    {% endfor %}
+</table>
 
-        
-        {%if greeting == 1%}
-        <h1>
-            Hello
-        </h1>
-        {%else%}
-        <h1>
-            Bye
-        </h1>
+{% with firstname="Tobias" %}
 
-        {%endif%}
+<h2>Hello {{ firstname }}, how are you?</h2>
 
+{% for x in fruits %}
+<h1>{{ x }}</h1>
+{% endfor %}
 
+{% if greeting == 1 %}
+<h1>Hello</h1>
+{% else %}
+<h1>Bye</h1>
+{% endif %}
 
-        <ul>
-            {% for x in mymembers%}
-            <li>
-                {{x.firstname}}</li>
-                {%endfor%}
-            </ul>
-    <p>In views.py , you can see that how fruits variables look like.</p>
-    
-    </body>
-    </html>
+<ul>
+{% for x in mymembers %}
+    <li>{{ x.firstname }}</li>
+{% endfor %}
+</ul>
 
+<p>In views.py, you can see how fruits variables look like.</p>
 
-    
+{% endwith %}
+
+</body>
+</html>

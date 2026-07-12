@@ -1,125 +1,29 @@
-from django.http import HttpResponse
-from django.template import loader
+from django.shortcuts import render
 from .models import Member
 
 
-def members(request):
-    mymebers = Member.objects.all().values()
-    template = loader.get_template("allmembers.html")
-    context = {
-        "mymembers": mymebers,
-    }
+def main(request):
+    return render(request, "main.html")
 
-    return HttpResponse(template.render(context, request))
+
+def members(request):
+    mymembers = Member.objects.all()
+    return render(request, "allmembers.html", {
+        "mymembers": mymembers,
+    })
 
 
 def details(request, id):
     mymember = Member.objects.get(id=id)
-    template = loader.get_template("details.html")
-    context = {
+    return render(request, "details.html", {
         "mymember": mymember,
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def main(request):
-    template = loader.get_template("main.html")
-    return HttpResponse(template.render())
-
-
-def testing1(request):
-    template = loader.get_template("template.html")
-    context = {
-        "fruits": ["ABE", "AA", "NAA"],
-    }
-    return HttpResponse(template.render(context, request))
-
-
-from django.http import HttpResponse
-from django.template import loader
-
-
-def testing2(request):
-    template = loader.get_template("template.html")
-    context = {
-        "firstname": "Linus",
-    }
-    return HttpResponse(template.render(context, request))
-
-
-from django.http import HttpResponse, HttpResponseRedirect
-from django.template import loader
-from .models import Member
-
-
-def testing3(request):
-    mymembers = Member.objects.all().values()
-    template = loader.get_template("template.html")
-    context = {
-        "mymembers": mymembers,
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def testing4(request):
-    mydata = Member.objects.all()
-    template = loader.get_template("template.html")
-    context = {"mymembers": mydata}
-    return HttpResponse(template.render(context, request))
-
-
-def testing5(request):
-    mydata = Member.objects.values_list("firstname")
-    template = loader.get_template("template.html")
-    context = {"mymembers": mydata}
-    return HttpResponse(template.render(context, request))
-
-
-def testing6(request):
-    mydata = Member.objects.filter(firstname="Emile").values()
-    template = loader.get_template("template.html")
-    context = {"mymembers": mydata}
-    return HttpResponse(template.render(context, request))
-
-
-from django.http import HttpResponse
-from django.template import loader
-from .models import Member
-from django.db.models import Q
-
-
-def testing6(request):
-    mydata = Member.objects.filter(
-        Q(firstname="Emile") | Q(firstname="Tobias")
-    ).values()
-    template = loader.get_template("template.html")
-    context = {"mymembers": mydata}
-    return HttpResponse(template.render(context, request))
-
-
-def testing7(request):
-    mydata = Member.objects.filter(firstname__startswith="L").values()
-    template = loader.get_template("template.html")
-    context = {"mymembers": mydata}
-    return HttpResponse(template.render(context, request))
-
-
-def testing8(request):
-    mydata = Member.objects.all().order_by("firstname").values()
-    template = loader.get_template("template.html")
-    context = {"mymembers": mydata}
-    return HttpResponse(template.render(context, request))
-
-
-def testing9(request):
-    mydata = Member.objects.all().order_by("-firstname").values()
-    template = loader.get_template("template.html")
-    context = {"mymembers": mydata}
-    return HttpResponse(template.render(context, request))
+    })
 
 
 def testing10(request):
-    mydata = Member.objects.all().order_by("lastname", "-id").values()
-    template = loader.get_template("template.html")
-    context = {"mymembers": mydata}
-    return HttpResponse(template.render(context, request))
+    mymembers = Member.objects.all().order_by("lastname", "-id")
+    return render(request, "template.html", {
+        "mymembers": mymembers,
+        "fruits": ["Apple", "Banana", "Mango"],
+        "greeting": 1,
+    })

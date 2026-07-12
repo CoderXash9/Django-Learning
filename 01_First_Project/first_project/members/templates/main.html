@@ -1,13 +1,18 @@
-{%extends 'master.html'%}
+{% extends 'master.html' %}
 
-{%block title%}
-    My first project
-{%endblock%}
+{% block title %}
+My First Project
+{% endblock %}
 
-{%block content%}
-    <h1> My first project </h1>
-    <h3> Members </h3>
+{% block content %}
 
-    <p> Check out all our <a href = "members/">members</a></p>
+<h1>My First Project</h1>
 
-{%endblock%}
+<h3>Members</h3>
+
+<p>
+    Check out all our
+    <a href="{% url 'members' %}">members</a>
+</p>
+
+{% endblock %}

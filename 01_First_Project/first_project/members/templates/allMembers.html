@@ -1,17 +1,25 @@
-{%extends 'master.html' %}
+{% extends 'master.html' %}
 
-{%block title%}
-    first project - list of all members
-{%endblock%}
+{% block title %}
+First Project - Members
+{% endblock %}
 
-{%block content%}
-<p><a href='/'>HOME</a></p>
-<h1> Members </h1>
+{% block content %}
+
+<p><a href="{% url 'main' %}">HOME</a></p>
+
+<h1>Members</h1>
 
 <ul>
-    {% for x in mymembers%}
-    <li> <a href = "details/{{x.id}}">{{x.firstname}} {{x.lastname}}</a></li>
-    {%endfor%}
+{% for x in mymembers %}
+    <li>
+        <a href="{% url 'details' x.id %}">
+            {{ x.firstname }} {{ x.lastname }}
+        </a>
+    </li>
+{% empty %}
+    <li>No members found.</li>
+{% endfor %}
 </ul>
-{%endblock%}
 
+{% endblock %}
